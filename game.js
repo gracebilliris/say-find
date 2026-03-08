@@ -1,22 +1,17 @@
-// Game Data - Expanded with specific themed categories and point values
-// Points reflect difficulty: easier answers = fewer points, harder answers = more points
-const CATEGORIES = [
-    {
-        name: "Tom Cruise Movies",
-        description: "Films starring Tom Cruise",
-        answers: [
-            { text: "Top Gun", points: 2 },
-            { text: "Mission Impossible", points: 2 },
-            { text: "Jerry Maguire", points: 3 },
-            { text: "Minority Report", points: 4 },
-            { text: "War Horse", points: 4 },
-            { text: "Jack Reacher", points: 3 },
-            { text: "Edge of Tomorrow", points: 3 },
-            { text: "Magnolia", points: 5 },
-            { text: "Valkyrie", points: 4 },
-            { text: "The Mummy (2017)", points: 3 }
-        ]
-    },
+// Categories are now loaded from categories-structure.js
+// The CATEGORIES array is now a flattened version for backwards compatibility
+let CATEGORIES = [];
+
+// Initialize categories on load
+document.addEventListener('DOMContentLoaded', () => {
+    CATEGORIES = getCategoriesList();
+    setupEventListeners();
+    updatePageLanguage();
+    document.getElementById('languageSelect').value = currentLanguage;
+    showScreen('mainScreen');
+});
+
+// Game State
     {
         name: "Vampire Movies",
         description: "Films featuring vampires",
@@ -360,14 +355,6 @@ let gameState = {
 
 let selectedTeamColor = '#FF6B6B';
 let editingTeamIndex = null;
-
-// Initialize
-document.addEventListener('DOMContentLoaded', () => {
-    setupEventListeners();
-    updatePageLanguage();
-    document.getElementById('languageSelect').value = currentLanguage;
-    showScreen('mainScreen');
-});
 
 // Event Listeners
 function setupEventListeners() {

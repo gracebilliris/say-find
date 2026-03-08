@@ -264,3 +264,22 @@ function getMainCategories() {
         description: CATEGORY_STRUCTURE[key].descriptionKey
     }));
 }
+
+// Get question sets grouped by main category (for game logic)
+function getCategoryQuestionSets() {
+    const questionSets = {};
+    Object.keys(CATEGORY_STRUCTURE).forEach(mainCat => {
+        const category = CATEGORY_STRUCTURE[mainCat];
+        questionSets[mainCat] = category.questions.map(question => ({
+            id: `${mainCat}__${question.nameKey}`,
+            mainCategory: mainCat,
+            mainCategoryNameKey: category.nameKey,
+            nameKey: question.nameKey,
+            descriptionKey: question.descriptionKey,
+            answers: question.answers,
+            name: question.nameKey,
+            description: question.descriptionKey
+        }));
+    });
+    return questionSets;
+}

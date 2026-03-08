@@ -1,10 +1,14 @@
 // Categories are now loaded from categories-structure.js
-// The CATEGORIES array is now a flattened version for backwards compatibility
+// Using main categories for selection, sub-categories are handled internally
 let CATEGORIES = [];
+let MAIN_CATEGORIES = [];
+let CATEGORY_QUESTIONS = {}; // Maps main category names to their question sets
 
 // Initialize categories on load
 document.addEventListener('DOMContentLoaded', () => {
-    CATEGORIES = getCategoriesList();
+    // Initialize category structure
+    MAIN_CATEGORIES = getMainCategories();
+    CATEGORY_QUESTIONS = getCategoryQuestionSets();
     setupEventListeners();
     updatePageLanguage();
     document.getElementById('languageSelect').value = currentLanguage;
@@ -178,21 +182,35 @@ function renderCategoriesList() {
     const categoriesList = document.getElementById('categoriesList');
     categoriesList.innerHTML = '';
 
-    CATEGORIES.forEach((category) => {
-        const isSelected = gameState.selectedCategories.includes(category.id);
-        const translatedName = t(category.nameKey);
-        const translatedDesc = t(category.descriptionKey);
+    // Render only main categories - no sub-category details
+    MAIN_CATEGORIES.forEach((mainCat) => {
+        const isSelected = gameState.selectedCategories.includes(mainCat.key);
+        
+        const translatedMainCat = t(mainCat.nameKey);
         const categoryEl = document.createElement('label');
         categoryEl.className = 'category-checkbox';
+        
         categoryEl.innerHTML = `
-            <input type="checkbox" ${isSelected ? 'checked' : ''} onchange="toggleCategory('${category.id}', this.checked)">
+            <input type="checkbox" ${isSelected ? 'checked' : ''} onchange="toggleMainCategory('${mainCat.key}', this.checked)">
             <div>
-                <span class="category-label">${translatedName}</span>
-                ${translatedDesc ? `<span class="category-desc">${translatedDesc}</span>` : ''}
+                <span class="category-label">${translatedMainCat}</span>
             </div>
         `;
         categoriesList.appendChild(categoryEl);
     });
+}
+
+function toggleMainCategory(mainCat, isChecked) {
+    // Toggle main category - no sub-categories shown
+    if (isChecked) {
+        if (!gameState.selectedCategories.includes(mainCat)) {
+            gameState.selectedCategories.push(mainCat);
+        }
+    } else {
+        gameState.selectedCategories = gameState.selectedCategories.filter(cat => cat !== mainCat);
+    }
+    
+    renderCategoriesList();
 }
 
 function toggleCategory(categoryName, isChecked) {
@@ -206,7 +224,7 @@ function toggleCategory(categoryName, isChecked) {
 }
 
 function selectAllCategories() {
-    gameState.selectedCategories = CATEGORIES.map(c => c.id);
+    gameState.selectedCategories = MAIN_CATEGORIES.map(c => c.key);
     renderCategoriesList();
 }
 
@@ -229,7 +247,7 @@ function showSetupScreen() {
             return acc;
         }, {}),
         roundAnswers: {},
-        selectedCategories: gameState.selectedCategories.length > 0 ? gameState.selectedCategories : CATEGORIES.map(c => c.id)
+        selectedCategories: gameState.selectedCategories.length > 0 ? gameState.selectedCategories : MAIN_CATEGORIES.map(c => c.key)
     };
 
     renderTeamsList();
@@ -274,23 +292,31 @@ function startRound() {
 }
 
 function selectNewCategoryForTeam() {
-    const availableCategories = CATEGORIES.filter(c => gameState.selectedCategories.includes(c.id));
+    // Select a main category first
+    const availableMainCats = gameState.selectedCategories.filter(mainCat => 
+        !gameState.roundUsedCategories.has(mainCat)
+    );
     
-    if (availableCategories.length === 0) {
+    if (availableMainCats.length === 0) {
         alert('No categories available');
         return;
     }
 
-    let category;
-    let attempts = 0;
+    // Pick a random main category
+    const selectedMainCat = availableMainCats[Math.floor(Math.random() * availableMainCats.length)];
+    gameState.roundUsedCategories.add(selectedMainCat);
     
-    do {
-        category = availableCategories[Math.floor(Math.random() * availableCategories.length)];
-        attempts++;
-    } while (gameState.roundUsedCategories.has(category.id) && attempts < 50);
+    // Get all question sets for this main category
+    const questionSets = CATEGORY_QUESTIONS[selectedMainCat] || [];
     
-    gameState.roundUsedCategories.add(category.id);
-    gameState.currentCategory = category;
+    if (questionSets.length === 0) {
+        alert('No question sets available for ' + selectedMainCat);
+        return;
+    }
+    
+    // Pick a random question set from this main category
+    const selectedQuestion = questionSets[Math.floor(Math.random() * questionSets.length)];
+    gameState.currentCategory = selectedQuestion;
 }
 
 function renderGameScreen() {

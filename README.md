@@ -54,7 +54,7 @@ A fun, fully interactive team-based quiz game combining knowledge, wit, and comp
 ## How to Deploy to GitHub Pages
 
 ### Option 1: GitHub Desktop
-1. Clone the repository: `git clone https://github.com/yourusername/say-find.git`
+1. Clone the repository: `git clone https://github.com/gracebilliris/say-find.git`
 2. Make sure all files are in the root directory:
    - `index.html`
    - `style.css`
@@ -62,7 +62,7 @@ A fun, fully interactive team-based quiz game combining knowledge, wit, and comp
 3. Push to the `main` branch
 4. Go to GitHub repository Settings → Pages
 5. Set "Source" to "Deploy from a branch" and select "main" branch
-6. Your game will be live at: `https://yourusername.github.io/say-find/`
+6. Your game will be live at: `https://gracebilliris.github.io/say-find/`
 
 ### Option 2: Command Line
 ```bash
@@ -79,7 +79,7 @@ git add .
 git commit -m "Initial commit: Say Find game"
 
 # Add remote (replace with your GitHub repo URL)
-git remote add origin https://github.com/yourusername/say-find.git
+git remote add origin https://github.com/gracebilliris/say-find.git
 
 # Push to main branch
 git branch -M main
@@ -146,4 +146,4 @@ Open source - feel free to use, modify, and distribute!
 
 ---
 
-**Ready to play?** Visit the live game: [Play Say Find](https://yourusername.github.io/say-find/)
+**Ready to play?** Visit the live game: [Play Say Find](https://gracebilliris.github.io/say-find/)

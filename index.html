@@ -1,201 +1,429 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Say Find - Party Game</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <div class="container">
-        <!-- Language Selector -->
-        <div class="language-selector">
-            <label for="languageSelect">🌐 <span data-translate="language">Language</span>:</label>
-            <select id="languageSelect" onchange="setLanguage(this.value)">
-                <option value="en">English</option>
-                <option value="es">Español</option>
-                <option value="fr">Français</option>
-                <option value="de">Deutsch</option>
-                <option value="it">Italiano</option>
-                <option value="pt">Português</option>
-                <option value="el">Ελληνικά</option>
-                <option value="ru">Русский</option>
-                <option value="ja">日本語</option>
-                <option value="zh">中文</option>
-            </select>
-        </div>
-
-        <!-- Header -->
-        <header class="header">
-            <h1 data-translate="appTitle">Say Find</h1>
-            <p class="subtitle" data-translate="subtitle">The ultimate team quiz game combining knowledge, wit and competition!</p>
-        </header>
-
-        <!-- Main Screen -->
-        <div id="mainScreen" class="screen active">
-            <div class="content-section">
-                <h2 data-translate="letsPlay">Let's Play!</h2>
-                <button id="newGameBtn" class="btn btn-primary" data-translate="startNewGame">Start New Game</button>
-                <button id="aboutBtn" class="btn btn-secondary" data-translate="about">About & Credits</button>
+    <head>
+        <meta charset="UTF-8" />
+        <meta
+            name="viewport"
+            content="width=device-width, initial-scale=1.0"
+        />
+        <title>Say Find - Party Game</title>
+        <link
+            rel="stylesheet"
+            href="style.css"
+        />
+    </head>
+    <body>
+        <div class="container">
+            <!-- Language Selector -->
+            <div class="language-selector">
+                <label for="languageSelect">🌐 <span data-translate="language">Language</span>:</label>
+                <select
+                    id="languageSelect"
+                    onchange="setLanguage(this.value)"
+                >
+                    <option value="en">English</option>
+                    <option value="es">Español</option>
+                    <option value="fr">Français</option>
+                    <option value="de">Deutsch</option>
+                    <option value="it">Italiano</option>
+                    <option value="pt">Português</option>
+                    <option value="el">Ελληνικά</option>
+                    <option value="ru">Русский</option>
+                    <option value="ja">日本語</option>
+                    <option value="zh">中文</option>
+                </select>
             </div>
-        </div>
 
-        <!-- Setup Screen -->
-        <div id="setupScreen" class="screen">
-            <div class="content-section">
-                <h2 data-translate="gameSetup">Game Setup</h2>
-                
-                <!-- Teams Section -->
-                <div class="setup-panel">
-                    <h3 data-translate="teams">Teams</h3>
-                    <div id="teamsList" class="teams-list"></div>
-                    <button id="addTeamBtn" class="btn btn-secondary" data-translate="addTeam">+ Add Team</button>
+            <!-- Header -->
+            <header class="header">
+                <h1 data-translate="appTitle">Say Find</h1>
+                <p
+                    class="subtitle"
+                    data-translate="subtitle"
+                >
+                    The ultimate team quiz game combining knowledge, wit and competition!
+                </p>
+            </header>
+
+            <!-- Main Screen -->
+            <div
+                id="mainScreen"
+                class="screen active"
+            >
+                <div class="content-section">
+                    <h2 data-translate="letsPlay">Let's Play!</h2>
+                    <button
+                        id="newGameBtn"
+                        class="btn btn-primary"
+                        data-translate="startNewGame"
+                    >
+                        Start New Game
+                    </button>
+                    <button
+                        id="aboutBtn"
+                        class="btn btn-secondary"
+                        data-translate="about"
+                    >
+                        About & Credits
+                    </button>
                 </div>
+            </div>
 
-                <!-- Categories Section -->
-                <div class="setup-panel">
-                    <h3 data-translate="categories">Categories</h3>
-                    <p style="font-size: 0.9em; color: #666; margin-bottom: 15px;" data-translate="selectCategories">Choose which categories to use in the game</p>
-                    <div id="categoriesList" class="categories-list"></div>
-                    <button id="selectAllCategoriesBtn" class="btn btn-secondary" style="margin-right: 5px; font-size: 0.85em; padding: 8px 15px;" data-translate="selectAll">Select All</button>
-                    <button id="deselectAllCategoriesBtn" class="btn btn-secondary" style="font-size: 0.85em; padding: 8px 15px;" data-translate="deselectAll">Deselect All</button>
-                </div>
+            <!-- Setup Screen -->
+            <div
+                id="setupScreen"
+                class="screen"
+            >
+                <div class="content-section">
+                    <h2 data-translate="gameSetup">Game Setup</h2>
 
-                <!-- Game Settings Section -->
-                <div class="setup-panel">
-                    <h3 data-translate="gameSettings">Game Settings</h3>
-                    <div class="settings-group">
-                        <label for="roundsInput" data-translate="numberOfRounds">Number of Rounds:</label>
-                        <input type="number" id="roundsInput" min="1" max="10" value="3">
+                    <!-- Teams Section -->
+                    <div class="setup-panel">
+                        <h3 data-translate="teams">Teams</h3>
+                        <div
+                            id="teamsList"
+                            class="teams-list"
+                        ></div>
+                        <button
+                            id="addTeamBtn"
+                            class="btn btn-secondary"
+                            data-translate="addTeam"
+                        >
+                            + Add Team
+                        </button>
                     </div>
-                    <div class="settings-group">
-                        <label for="timeInput" data-translate="timePerRound">Time per Round (seconds):</label>
-                        <input type="number" id="timeInput" min="10" max="300" value="60">
+
+                    <!-- Categories Section -->
+                    <div class="setup-panel">
+                        <h3 data-translate="categories">Categories</h3>
+                        <p
+                            style="font-size: 0.9em; color: #666; margin-bottom: 15px"
+                            data-translate="selectCategories"
+                        >
+                            Choose which categories to use in the game
+                        </p>
+                        <div
+                            id="categoriesList"
+                            class="categories-list"
+                        ></div>
+                        <button
+                            id="selectAllCategoriesBtn"
+                            class="btn btn-secondary"
+                            style="margin-right: 5px; font-size: 0.85em; padding: 8px 15px"
+                            data-translate="selectAll"
+                        >
+                            Select All
+                        </button>
+                        <button
+                            id="deselectAllCategoriesBtn"
+                            class="btn btn-secondary"
+                            style="font-size: 0.85em; padding: 8px 15px"
+                            data-translate="deselectAll"
+                        >
+                            Deselect All
+                        </button>
                     </div>
-                </div>
 
-                <!-- Action Buttons -->
-                <div class="button-group">
-                    <button id="startGameBtn" class="btn btn-primary" data-translate="startGame">Start Game</button>
-                    <button id="backToMenuBtn" class="btn btn-secondary" data-translate="backToMenu">Back to Menu</button>
-                </div>
-            </div>
-        </div>
+                    <!-- Game Settings Section -->
+                    <div class="setup-panel">
+                        <h3 data-translate="gameSettings">Game Settings</h3>
+                        <div class="settings-group">
+                            <label
+                                for="roundsInput"
+                                data-translate="numberOfRounds"
+                                >Number of Rounds:</label
+                            >
+                            <input
+                                type="number"
+                                id="roundsInput"
+                                min="1"
+                                max="10"
+                                value="3"
+                            />
+                        </div>
+                        <div class="settings-group">
+                            <label
+                                for="timeInput"
+                                data-translate="timePerRound"
+                                >Time per Round (seconds):</label
+                            >
+                            <input
+                                type="number"
+                                id="timeInput"
+                                min="10"
+                                max="300"
+                                value="60"
+                            />
+                        </div>
+                    </div>
 
-        <!-- Game Screen -->
-        <div id="gameScreen" class="screen">
-            <div class="game-header">
-                <div class="game-info">
-                    <span class="round-info" data-translate="round">Round</span> <span id="currentRound">1</span>/<span id="totalRounds">3</span>
-                    <span class="timer" id="timer">60</span>s
-                </div>
-                <div class="team-turn">
-                    <span id="currentTeamName" class="current-team">Team 1</span><span data-translate="teamTurn">'s Turn</span>
-                </div>
-            </div>
-
-            <div class="content-section">
-                <h2 data-translate="findAnswers">Find the Answers</h2>
-                
-                <!-- Category Display -->
-                <div class="category-box">
-                    <p data-translate="category">Category:</p>
-                    <h3 id="categoryDisplay">Loading category...</h3>
-                </div>
-
-                <!-- Answers Grid -->
-                <div id="answersGrid" class="answers-grid"></div>
-
-                <!-- Score Display -->
-                <div class="round-score">
-                    <p id="roundScore">Round Score: 0 pts</p>
-                </div>
-
-                <!-- Action Buttons -->
-                <div class="button-group">
-                    <button id="nextTeamBtn" class="btn btn-primary" data-translate="nextTeam">Next Team</button>
-                    <button id="undoBtn" class="btn btn-secondary" data-translate="undo">Undo</button>
-                </div>
-            </div>
-
-            <!-- Score Board -->
-            <div class="scoreboard">
-                <h3 data-translate="scores">Scores</h3>
-                <div id="scoresDisplay" class="scores-display"></div>
-            </div>
-        </div>
-
-        <!-- Results Screen -->
-        <div id="resultsScreen" class="screen">
-            <div class="content-section">
-                <h2>🏆 <span data-translate="gameOver">Game Over!</span></h2>
-                
-                <div id="resultsContent" class="results-content"></div>
-
-                <div class="button-group">
-                    <button id="shareBtn" class="btn btn-primary" data-translate="shareVictory">Share Victory</button>
-                    <button id="playAgainBtn" class="btn btn-secondary" data-translate="playAgain">Play Again</button>
-                    <button id="mainMenuBtn" class="btn btn-secondary" data-translate="mainMenu">Main Menu</button>
-                </div>
-            </div>
-        </div>
-
-        <!-- About Modal -->
-        <div id="aboutModal" class="modal">
-            <div class="modal-content about-modal">
-                <span class="close" onclick="closeAboutModal()">&times;</span>
-                <h2 data-translate="about">About Say Find</h2>
-                <div id="aboutContent" class="about-content">
-                    <h3 data-translate="gameDescription">About the Game</h3>
-                    <p data-translate="aboutGameText">Say Find is a fun party game combining knowledge, observation, and competition. Teams race to find all the answers on a themed list. Harder answers are worth more points—the team with the most points wins!</p>
-                    
-                    <h3 data-translate="howToPlay">How to Play</h3>
-                    <ul>
-                        <li data-translate="step1">Divide into teams and choose a team name and color</li>
-                        <li data-translate="step2">Select categories for the game</li>
-                        <li data-translate="step3">Each team takes turns finding answers from the list</li>
-                        <li data-translate="step4">More difficult answers are worth more points</li>
-                        <li data-translate="step5">Most points after all rounds wins!</li>
-                    </ul>
-                    
-                    <h3 data-translate="credits">Credits & Attribution</h3>
-                    <p data-translate="originalGame">This game is an English adaptation of the original Greek party game <strong>"Πες Βρες"</strong> (Say Find).</p>
-                    <p data-translate="originalCreators"><strong>Original Game Created by:</strong> Petros Chatzipapas, Harris Kokkinos, Alexios Argiriou</p>
-                    <p data-translate="originalWebsite"><strong>Original Game:</strong> <a href="https://www.pesvres.com" target="_blank" rel="noopener noreferrer">www.pesvres.com</a></p>
-                    <p data-translate="copyrightNotice">© 2011-2026 Πες Βρες - All Rights Reserved</p>
-                    <p data-translate="inspiration"><strong>Inspired by:</strong> Wavelength (Mike Eckel) and other party games</p>
-                </div>
-                <button onclick="closeAboutModal()" class="btn btn-primary" style="margin-top: 20px; width: 100%;" data-translate="close">Close</button>
-            </div>
-        </div>
-
-        <!-- Team Modal -->
-        <div id="teamModal" class="modal">
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                <h2 data-translate="addEditTeam">Add/Edit Team</h2>
-                <input type="text" id="teamNameInput" placeholder="Team Name (optional)" maxlength="20">
-                <div class="color-picker">
-                    <label data-translate="selectColor">Select Color:</label>
-                    <div class="color-options">
-                        <button class="color-btn" style="background-color: #FF6B6B;" data-color="#FF6B6B"></button>
-                        <button class="color-btn" style="background-color: #4ECDC4;" data-color="#4ECDC4"></button>
-                        <button class="color-btn" style="background-color: #FFE66D;" data-color="#FFE66D"></button>
-                        <button class="color-btn" style="background-color: #95E1D3;" data-color="#95E1D3"></button>
-                        <button class="color-btn" style="background-color: #C7CEEA;" data-color="#C7CEEA"></button>
-                        <button class="color-btn" style="background-color: #FF8B94;" data-color="#FF8B94"></button>
+                    <!-- Action Buttons -->
+                    <div class="button-group">
+                        <button
+                            id="startGameBtn"
+                            class="btn btn-primary"
+                            data-translate="startGame"
+                        >
+                            Start Game
+                        </button>
+                        <button
+                            id="backToMenuBtn"
+                            class="btn btn-secondary"
+                            data-translate="backToMenu"
+                        >
+                            Back to Menu
+                        </button>
                     </div>
                 </div>
-                <div class="modal-buttons">
-                    <button id="saveTeamBtn" class="btn btn-primary" data-translate="saveTeam">Save Team</button>
-                    <button id="cancelTeamBtn" class="btn btn-secondary" data-translate="cancel">Cancel</button>
+            </div>
+
+            <!-- Game Screen -->
+            <div
+                id="gameScreen"
+                class="screen"
+            >
+                <div class="game-header">
+                    <div class="game-info">
+                        <span
+                            class="round-info"
+                            data-translate="round"
+                            >Round</span
+                        >
+                        <span id="currentRound">1</span>/<span id="totalRounds">3</span>
+                        <span
+                            class="timer"
+                            id="timer"
+                            >60</span
+                        >s
+                    </div>
+                    <div class="team-turn">
+                        <span
+                            id="currentTeamName"
+                            class="current-team"
+                            >Team 1</span
+                        ><span data-translate="teamTurn">'s Turn</span>
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <h2 data-translate="findAnswers">Find the Answers</h2>
+
+                    <!-- Category Display -->
+                    <div class="category-box">
+                        <p data-translate="category">Category:</p>
+                        <h3 id="categoryDisplay">Loading category...</h3>
+                    </div>
+
+                    <!-- Answers Grid -->
+                    <div
+                        id="answersGrid"
+                        class="answers-grid"
+                    ></div>
+
+                    <!-- Score Display -->
+                    <div class="round-score">
+                        <p id="roundScore">Round Score: 0 pts</p>
+                    </div>
+
+                    <!-- Action Buttons -->
+                    <div class="button-group">
+                        <button
+                            id="nextTeamBtn"
+                            class="btn btn-primary"
+                            data-translate="nextTeam"
+                        >
+                            Next Team
+                        </button>
+                        <button
+                            id="undoBtn"
+                            class="btn btn-secondary"
+                            data-translate="undo"
+                        >
+                            Undo
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Score Board -->
+                <div class="scoreboard">
+                    <h3 data-translate="scores">Scores</h3>
+                    <div
+                        id="scoresDisplay"
+                        class="scores-display"
+                    ></div>
+                </div>
+            </div>
+
+            <!-- Results Screen -->
+            <div
+                id="resultsScreen"
+                class="screen"
+            >
+                <div class="content-section">
+                    <h2>🏆 <span data-translate="gameOver">Game Over!</span></h2>
+
+                    <div
+                        id="resultsContent"
+                        class="results-content"
+                    ></div>
+
+                    <div class="button-group">
+                        <button
+                            id="shareBtn"
+                            class="btn btn-primary"
+                            data-translate="shareVictory"
+                        >
+                            Share Victory
+                        </button>
+                        <button
+                            id="playAgainBtn"
+                            class="btn btn-secondary"
+                            data-translate="playAgain"
+                        >
+                            Play Again
+                        </button>
+                        <button
+                            id="mainMenuBtn"
+                            class="btn btn-secondary"
+                            data-translate="mainMenu"
+                        >
+                            Main Menu
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- About Modal -->
+            <div
+                id="aboutModal"
+                class="modal"
+            >
+                <div class="modal-content about-modal">
+                    <span
+                        class="close"
+                        onclick="closeAboutModal()"
+                        >&times;</span
+                    >
+                    <h2 data-translate="about">About Say Find</h2>
+                    <div
+                        id="aboutContent"
+                        class="about-content"
+                    >
+                        <h3 data-translate="gameDescription">About the Game</h3>
+                        <p data-translate="aboutGameText">
+                            Say Find is a fun party game combining knowledge, observation, and competition. Teams race to find all the answers on a themed list.
+                            Harder answers are worth more points—the team with the most points wins!
+                        </p>
+
+                        <h3 data-translate="howToPlay">How to Play</h3>
+                        <ul>
+                            <li data-translate="step1">Divide into teams and choose a team name and color</li>
+                            <li data-translate="step2">Select categories for the game</li>
+                            <li data-translate="step3">Each team takes turns finding answers from the list</li>
+                            <li data-translate="step4">More difficult answers are worth more points</li>
+                            <li data-translate="step5">Most points after all rounds wins!</li>
+                        </ul>
+
+                        <h3 data-translate="credits">Credits & Attribution</h3>
+                        <p data-translate="originalGame">
+                            This game is an English adaptation of the original Greek party game <strong>"Πες Βρες"</strong> (Say Find).
+                        </p>
+                        <p data-translate="originalCreators">
+                            <strong>Original Game Created by:</strong> Petros Chatzipapas, Harris Kokkinos, Alexios Argiriou
+                        </p>
+                        <p data-translate="originalWebsite">
+                            <strong>Original Game:</strong>
+                            <a
+                                href="https://www.pesvres.com"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                >www.pesvres.com</a
+                            >
+                        </p>
+                        <p data-translate="copyrightNotice">© 2011-2026 Πες Βρες - All Rights Reserved</p>
+                    </div>
+                    <button
+                        onclick="closeAboutModal()"
+                        class="btn btn-primary"
+                        style="margin-top: 20px; width: 100%"
+                        data-translate="close"
+                    >
+                        Close
+                    </button>
+                </div>
+            </div>
+
+            <!-- Team Modal -->
+            <div
+                id="teamModal"
+                class="modal"
+            >
+                <div class="modal-content">
+                    <span class="close">&times;</span>
+                    <h2 data-translate="addEditTeam">Add/Edit Team</h2>
+                    <input
+                        type="text"
+                        id="teamNameInput"
+                        placeholder="Team Name (optional)"
+                        maxlength="20"
+                    />
+                    <div class="color-picker">
+                        <label data-translate="selectColor">Select Color:</label>
+                        <div class="color-options">
+                            <button
+                                class="color-btn"
+                                style="background-color: #ff6b6b"
+                                data-color="#FF6B6B"
+                            ></button>
+                            <button
+                                class="color-btn"
+                                style="background-color: #4ecdc4"
+                                data-color="#4ECDC4"
+                            ></button>
+                            <button
+                                class="color-btn"
+                                style="background-color: #ffe66d"
+                                data-color="#FFE66D"
+                            ></button>
+                            <button
+                                class="color-btn"
+                                style="background-color: #95e1d3"
+                                data-color="#95E1D3"
+                            ></button>
+                            <button
+                                class="color-btn"
+                                style="background-color: #c7ceea"
+                                data-color="#C7CEEA"
+                            ></button>
+                            <button
+                                class="color-btn"
+                                style="background-color: #ff8b94"
+                                data-color="#FF8B94"
+                            ></button>
+                        </div>
+                    </div>
+                    <div class="modal-buttons">
+                        <button
+                            id="saveTeamBtn"
+                            class="btn btn-primary"
+                            data-translate="saveTeam"
+                        >
+                            Save Team
+                        </button>
+                        <button
+                            id="cancelTeamBtn"
+                            class="btn btn-secondary"
+                            data-translate="cancel"
+                        >
+                            Cancel
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <script src="translations.js"></script>
-    <script src="categories-structure.js"></script>
-    <script src="game.js"></script>
-</body>
+        <script src="translations.js"></script>
+        <script src="categories-structure.js"></script>
+        <script src="game.js"></script>
+    </body>
 </html>

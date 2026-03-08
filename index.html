@@ -34,6 +34,15 @@
                     <button id="addTeamBtn" class="btn btn-secondary">+ Add Team</button>
                 </div>
 
+                <!-- Categories Section -->
+                <div class="setup-panel">
+                    <h3>Select Categories</h3>
+                    <p style="font-size: 0.9em; color: #666; margin-bottom: 15px;">Choose which categories to use in the game</p>
+                    <div id="categoriesList" class="categories-list"></div>
+                    <button id="selectAllCategoriesBtn" class="btn btn-secondary" style="margin-right: 5px; font-size: 0.85em; padding: 8px 15px;">Select All</button>
+                    <button id="deselectAllCategoriesBtn" class="btn btn-secondary" style="font-size: 0.85em; padding: 8px 15px;">Deselect All</button>
+                </div>
+
                 <!-- Game Settings Section -->
                 <div class="setup-panel">
                     <h3>Game Settings</h3>
@@ -118,7 +127,7 @@
             <div class="modal-content">
                 <span class="close">&times;</span>
                 <h2>Add/Edit Team</h2>
-                <input type="text" id="teamNameInput" placeholder="Team Name" maxlength="20">
+                <input type="text" id="teamNameInput" placeholder="Team Name (optional)" maxlength="20">
                 <div class="color-picker">
                     <label>Select Color:</label>
                     <div class="color-options">

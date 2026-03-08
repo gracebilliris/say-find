@@ -1,35 +1,342 @@
-// Game Data - Expanded with many more categories and questions
+// Game Data - Expanded with specific themed categories and point values
+// Points reflect difficulty: easier answers = fewer points, harder answers = more points
 const CATEGORIES = [
-    { name: "Famous Movie Characters", answers: ["Simba", "Elsa", "Yoda", "Sherlock", "Harley Quinn", "Batman", "Iron Man", "Katniss", "Gandalf", "Neo", "Forrest Gump", "Marty McFly", "E.T.", "Terminator", "Joker", "Darth Vader", "Luke Skywalker", "Princess Leia", "Han Solo", "Frodo"] },
-    { name: "Fruits", answers: ["Apple", "Banana", "Orange", "Strawberry", "Grape", "Mango", "Watermelon", "Pineapple", "Kiwi", "Blueberry", "Raspberry", "Lemon", "Lime", "Cherry", "Peach", "Apricot", "Papaya", "Coconut", "Pomegranate", "Passionfruit"] },
-    { name: "Football Teams", answers: ["Manchester United", "Barcelona", "Liverpool", "Real Madrid", "Arsenal", "Chelsea", "Bayern Munich", "PSG", "Inter Milan", "Juventus", "Borussia Dortmund", "AC Milan", "Atletico Madrid", "Tottenham", "City of Manchester", "Ajax", "Porto", "Benfica", "Roma", "Napoli"] },
-    { name: "Programming Languages", answers: ["Python", "JavaScript", "Java", "C++", "Ruby", "Go", "Rust", "PHP", "Swift", "Kotlin", "TypeScript", "C#", "Scala", "Erlang", "Haskell", "Perl", "Assembly", "Lua", "R", "Julia"] },
-    { name: "Disney Movies", answers: ["Frozen", "Lion King", "Aladdin", "Cinderella", "Moana", "Tangled", "Mulan", "Beauty and Beast", "Hercules", "Pocahontas", "Sleeping Beauty", "Snow White", "Pinocchio", "Dumbo", "Bambi", "Coco", "Brave", "Encanto", "Raya", "Zootopia"] },
-    { name: "Countries", answers: ["Italy", "Japan", "Brazil", "Egypt", "Iceland", "Thailand", "Portugal", "Greece", "Mexico", "Canada", "Australia", "Norway", "Spain", "France", "Germany", "India", "China", "Argentina", "Sweden", "Switzerland"] },
-    { name: "Superheroes", answers: ["Superman", "Wonder Woman", "Captain America", "Hulk", "Spider-Man", "Black Widow", "Flash", "Green Lantern", "Aquaman", "Green Arrow", "Hawkeye", "Iron Fist", "Daredevil", "Black Panther", "Doctor Strange", "Scarlet Witch", "Vision", "Ant-Man", "Wasp", "Thor"] },
-    { name: "Breakfast Foods", answers: ["Pancakes", "Cereal", "Bacon", "Eggs", "Toast", "Yogurt", "Oats", "Croissant", "Waffle", "Smoothie", "Sausage", "Hash Browns", "Muffin", "Bagel", "Granola", "Jam", "Avocado", "Sausage", "Crepe", "Porridge"] },
-    { name: "World Capitals", answers: ["Paris", "Tokyo", "Cairo", "Madrid", "London", "Rome", "Berlin", "Amsterdam", "Bangkok", "Istanbul", "Moscow", "Beijing", "New Delhi", "Toronto", "Canberra", "Mexico City", "Buenos Aires", "São Paulo", "Rio de Janeiro", "Sydney"] },
-    { name: "Musical Instruments", answers: ["Guitar", "Piano", "Violin", "Drums", "Trumpet", "Saxophone", "Flute", "Cello", "Harmonica", "Banjo", "Harp", "Oboe", "Clarinet", "Trombone", "French Horn", "Cymbal", "Tambourine", "Lute", "Mandolin", "Accordion"] },
-    { name: "Olympic Sports", answers: ["Swimming", "Gymnastics", "Basketball", "Volleyball", "Archery", "Fencing", "Wrestling", "Badminton", "Rowing", "Cycling", "Track and Field", "Weightlifting", "Judo", "Taekwondo", "Tennis", "Table Tennis", "Shooting", "Equestrian", "Boxing", "Skateboarding"] },
-    { name: "Sea Animals", answers: ["Dolphin", "Shark", "Whale", "Octopus", "Starfish", "Jellyfish", "Seahorse", "Crab", "Lobster", "Seal", "Penguin", "Puffin", "Eel", "Squid", "Manta Ray", "Sea Turtle", "Clownfish", "Angelfish", "Barracuda", "Stingray"] },
-    { name: "TV Shows", answers: ["Breaking Bad", "Game of Thrones", "Friends", "The Office", "Stranger Things", "The Crown", "Sherlock", "House of Cards", "Westworld", "Succession", "The Witcher", "Chernobyl", "Mindhunter", "Ozark", "Peaky Blinders", "The Marvelous Mrs. Maisel", "BoJack Horseman", "Dexter", "True Detective", "Fleabag"] },
-    { name: "Colors", answers: ["Red", "Blue", "Green", "Yellow", "Purple", "Orange", "Pink", "Brown", "Gray", "Black", "White", "Cyan", "Magenta", "Turquoise", "Indigo", "Violet", "Crimson", "Navy", "Maroon", "Gold"] },
-    { name: "Sports", answers: ["Soccer", "Basketball", "Tennis", "Baseball", "American Football", "Ice Hockey", "Golf", "Rugby", "Cricket", "Badminton", "Volleyball", "Handball", "Boxing", "Wrestling", "Swimming", "Cycling", "Archery", "Bowling", "Curling", "Fencing"] },
-    { name: "Vegetables", answers: ["Carrot", "Broccoli", "Tomato", "Cucumber", "Lettuce", "Spinach", "Pea", "Corn", "Potato", "Onion", "Garlic", "Cabbage", "Celery", "Bell Pepper", "Eggplant", "Zucchini", "Asparagus", "Brussels Sprouts", "Kale", "Radish"] },
-    { name: "Famous Scientists", answers: ["Albert Einstein", "Isaac Newton", "Marie Curie", "Stephen Hawking", "Charles Darwin", "Galileo Galilei", "Nikola Tesla", "Louis Pasteur", "Richard Feynman", "Carl Sagan", "Richard Dawkins", "Brian Greene", "Alan Turing", "Rosalind Franklin", "Gregor Mendel", "Wolfgang Pauli", "Max Planck", "Erwin Schrödinger", "Werner Heisenberg", "Paul Dirac"] },
-    { name: "Books", answers: ["Harry Potter", "The Great Gatsby", "To Kill a Mockingbird", "1984", "Pride and Prejudice", "The Catcher in the Rye", "Lord of the Rings", "The Hobbit", "Dune", "Foundation", "Brave New World", "The Hunger Games", "Twilight", "Percy Jackson", "A Song of Ice and Fire", "Sherlock Holmes", "The Adventures of Tom Sawyer", "Alice in Wonderland", "Moby Dick", "Frankenstein"] },
-    { name: "European Countries", answers: ["France", "Germany", "Italy", "Spain", "Poland", "Netherlands", "Belgium", "Austria", "Switzerland", "Greece", "Portugal", "Sweden", "Norway", "Denmark", "Finland", "Ireland", "Czech Republic", "Hungary", "Romania", "Bulgaria"] },
-    { name: "Asian Countries", answers: ["Japan", "India", "China", "Thailand", "Vietnam", "Philippines", "Indonesia", "South Korea", "Malaysia", "Singapore", "Cambodia", "Laos", "Myanmar", "Bangladesh", "Pakistan", "Afghanistan", "Mongolia", "Nepal", "Sri Lanka", "Bhutan"] },
-    { name: "African Countries", answers: ["Nigeria", "Kenya", "Egypt", "South Africa", "Ethiopia", "Ghana", "Morocco", "Angola", "Uganda", "Tanzania", "Sudan", "Algeria", "Botswana", "Zambia", "Zimbabwe", "Rwanda", "Cameroon", "Senegal", "Mali", "Mozambique"] },
-    { name: "American Countries", answers: ["USA", "Canada", "Mexico", "Brazil", "Argentina", "Chile", "Colombia", "Peru", "Venezuela", "Ecuador", "Bolivia", "Paraguay", "Nicaragua", "Costa Rica", "Panama", "Cuba", "Haiti", "Jamaica", "Dominican Republic", "Belize"] },
-    { name: "Actors", answers: ["Tom Cruise", "Johnny Depp", "Brad Pitt", "Leonardo DiCaprio", "Morgan Freeman", "Jack Nicholson", "Denzel Washington", "Will Smith", "George Clooney", "Matt Damon", "Keanu Reeves", "Robert Downey Jr.", "Chris Evans", "Mark Ruffalo", "Scarlett Johansson", "Angelina Jolie", "Jennifer Lawrence", "Meryl Streep", "Kate Blanchett", "Cate Blanchett"] },
-    { name: "Musicians", answers: ["The Beatles", "Rolling Stones", "Led Zeppelin", "Pink Floyd", "Queen", "Michael Jackson", "Elvis Presley", "David Bowie", "Prince", "Madonna", "Britney Spears", "Eminem", "Beyoncé", "Rihanna", "Taylor Swift", "The Weeknd", "Drake", "Ariana Grande", "Post Malone", "Billie Eilish"] },
-    { name: "Historical Events", answers: ["American Revolution", "French Revolution", "World War 1", "World War 2", "Moon Landing", "Industrial Revolution", "Renaissance", "Roman Empire", "Fall of Berlin Wall", "Civil Rights Movement", "Magna Carta", "Declaration of Independence", "Vietnam War", "Cold War", "Black Death", "Holocaust", "Napoleonic Wars", "American Civil War", "Cuban Missile Crisis", "Enlightenment"] },
-    { name: "Desserts", answers: ["Cake", "Pie", "Ice Cream", "Cookie", "Brownie", "Cheesecake", "Donut", "Cupcake", "Pudding", "Tiramisu", "Chocolate Mousse", "Baklava", "Churro", "Flan", "Crème Brûlée", "Tart", "Panna Cotta", "Soufflé", "Waffle", "Candy"] },
-    { name: "Drinks", answers: ["Coffee", "Tea", "Juice", "Soda", "Beer", "Wine", "Whiskey", "Vodka", "Rum", "Gin", "Tequila", "Sangria", "Smoothie", "Milkshake", "Lemonade", "Water", "Champagne", "Chocolate", "Hot Chocolate", "Energy Drink"] },
-    { name: "Animals", answers: ["Lion", "Tiger", "Elephant", "Giraffe", "Zebra", "Wolf", "Bear", "Deer", "Monkey", "Penguin", "Eagle", "Owl", "Snake", "Crocodile", "Frog", "Otter", "Panda", "Koala", "Kangaroo", "Cheetah"] },
-    { name: "Jobs", answers: ["Doctor", "Lawyer", "Teacher", "Engineer", "Chef", "Pilot", "Nurse", "Builder", "Electrician", "Plumber", "Mechanic", "Architect", "Designer", "Developer", "Scientist", "Artist", "Musician", "Actor", "Athlete", "Journalist"] },
-    { name: "Cars", answers: ["Ferrari", "Lamborghini", "Porsche", "Mercedes-Benz", "BMW", "Audi", "Tesla", "Toyota", "Honda", "Ford", "Chevrolet", "Dodge", "Jeep", "Volvo", "Lexus", "Bugatti", "Rolls-Royce", "Range Rover", "Maserati", "Jaguar"] },
+    {
+        name: "Tom Cruise Movies",
+        description: "Films starring Tom Cruise",
+        answers: [
+            { text: "Top Gun", points: 2 },
+            { text: "Mission Impossible", points: 2 },
+            { text: "Jerry Maguire", points: 3 },
+            { text: "Minority Report", points: 4 },
+            { text: "War Horse", points: 4 },
+            { text: "Jack Reacher", points: 3 },
+            { text: "Edge of Tomorrow", points: 3 },
+            { text: "Magnolia", points: 5 },
+            { text: "Valkyrie", points: 4 },
+            { text: "The Mummy (2017)", points: 3 }
+        ]
+    },
+    {
+        name: "Vampire Movies",
+        description: "Films featuring vampires",
+        answers: [
+            { text: "Dracula", points: 2 },
+            { text: "Interview with the Vampire", points: 3 },
+            { text: "Twilight", points: 2 },
+            { text: "Near Dark", points: 5 },
+            { text: "Nosferatu", points: 4 },
+            { text: "Let the Right One In", points: 4 },
+            { text: "Fright Night", points: 3 },
+            { text: "The Lost Boys", points: 3 },
+            { text: "Blade", points: 2 },
+            { text: "30 Days of Night", points: 3 }
+        ]
+    },
+    {
+        name: "Olympic Host Cities by Year",
+        description: "Cities that hosted the Olympic Games",
+        answers: [
+            { text: "Tokyo 2020", points: 2 },
+            { text: "Beijing 2008", points: 2 },
+            { text: "Rio 2016", points: 2 },
+            { text: "London 2012", points: 2 },
+            { text: "Athens 2004", points: 3 },
+            { text: "Sydney 2000", points: 3 },
+            { text: "Atlanta 1996", points: 3 },
+            { text: "Barcelona 1992", points: 3 },
+            { text: "Seoul 1988", points: 4 },
+            { text: "Montreal 1976", points: 5 }
+        ]
+    },
+    {
+        name: "Stanley Kubrick Films",
+        description: "Directorial works by Stanley Kubrick",
+        answers: [
+            { text: "2001: A Space Odyssey", points: 3 },
+            { text: "A Clockwork Orange", points: 3 },
+            { text: "The Shining", points: 2 },
+            { text: "Full Metal Jacket", points: 2 },
+            { text: "Dr. Strangelove", points: 3 },
+            { text: "Lolita", points: 5 },
+            { text: "Paths of Glory", points: 4 },
+            { text: "Spartacus", points: 2 },
+            { text: "Barry Lyndon", points: 5 },
+            { text: "Eyes Wide Shut", points: 2 }
+        ]
+    },
+    {
+        name: "Winners of Best Picture (2010-2020)",
+        description: "Academy Award Best Picture winners",
+        answers: [
+            { text: "Parasite", points: 3 },
+            { text: "Green Book", points: 2 },
+            { text: "The Shape of Water", points: 3 },
+            { text: "Moonlight", points: 3 },
+            { text: "Spotlight", points: 3 },
+            { text: "Birdman", points: 2 },
+            { text: "12 Years a Slave", points: 3 },
+            { text: "Argo", points: 2 },
+            { text: "The Artist", points: 2 },
+            { text: "Kings Speech", points: 2 }
+        ]
+    },
+    {
+        name: "Countries with No Official Religion",
+        description: "Secular nations worldwide",
+        answers: [
+            { text: "France", points: 2 },
+            { text: "United States", points: 2 },
+            { text: "Mexico", points: 3 },
+            { text: "Cuba", points: 3 },
+            { text: "Uruguay", points: 4 },
+            { text: "Bulgaria", points: 4 },
+            { text: "Czech Republic", points: 4 },
+            { text: "Albania", points: 5 },
+            { text: "Nicaragua", points: 5 },
+            { text: "Kazakhstan", points: 4 }
+        ]
+    },
+    {
+        name: "Batman Villains",
+        description: "Enemies of Batman",
+        answers: [
+            { text: "The Joker", points: 1 },
+            { text: "Two-Face", points: 2 },
+            { text: "The Riddler", points: 2 },
+            { text: "Penguin", points: 2 },
+            { text: "Scarecrow", points: 2 },
+            { text: "Mr. Freeze", points: 2 },
+            { text: "Catwoman", points: 1 },
+            { text: "Poison Ivy", points: 2 },
+            { text: "Harley Quinn", points: 1 },
+            { text: "Bane", points: 2 }
+        ]
+    },
+    {
+        name: "Foods with Unexpected Black Ingredients",
+        description: "Foods that contain black items",
+        answers: [
+            { text: "Black Beans", points: 1 },
+            { text: "Black Olives", points: 1 },
+            { text: "Sesame Seeds (Black)", points: 3 },
+            { text: "Black Garlic", points: 4 },
+            { text: "Black Salt", points: 3 },
+            { text: "Black Lentils", points: 2 },
+            { text: "Black Rice", points: 2 },
+            { text: "Squid Ink Pasta", points: 3 },
+            { text: "Black Pepper", points: 1 },
+            { text: "Black Cumin", points: 4 }
+        ]
+    },
+    {
+        name: "Space Exploration Milestones",
+        description: "Major achievements in space",
+        answers: [
+            { text: "Moon Landing", points: 2 },
+            { text: "First Satellite", points: 2 },
+            { text: "First Human in Space", points: 2 },
+            { text: "Mars Rover Landing", points: 3 },
+            { text: "Space Station", points: 2 },
+            { text: "First Commercial Flight", points: 3 },
+            { text: "Space Telescope", points: 2 },
+            { text: "Venus Exploration", points: 4 },
+            { text: "Asteroid Landing", points: 4 },
+            { text: "Black Hole Photo", points: 4 }
+        ]
+    },
+    {
+        name: "Tarantino Films",
+        description: "Directorial works by Quentin Tarantino",
+        answers: [
+            { text: "Pulp Fiction", points: 2 },
+            { text: "Kill Bill", points: 2 },
+            { text: "Inglourious Basterds", points: 2 },
+            { text: "Reservoir Dogs", points: 3 },
+            { text: "Jackie Brown", points: 3 },
+            { text: "Django Unchained", points: 2 },
+            { text: "Hateful Eight", points: 2 },
+            { text: "Death Proof", points: 3 },
+            { text: "Four Rooms", points: 4 },
+            { text: "Once Upon a Time in Hollywood", points: 2 }
+        ]
+    },
+    {
+        name: "Nobel Prize Winners (Science)",
+        description: "Nobel Prize recipients in science fields",
+        answers: [
+            { text: "Marie Curie", points: 2 },
+            { text: "Albert Einstein", points: 1 },
+            { text: "Richard Feynman", points: 3 },
+            { text: "Stephen Hawking", points: 2 },
+            { text: "Linus Pauling", points: 3 },
+            { text: "Max Planck", points: 4 },
+            { text: "Erwin Schrödinger", points: 4 },
+            { text: "Werner Heisenberg", points: 4 },
+            { text: "Paul Dirac", points: 5 },
+            { text: "Wolfgang Pauli", points: 5 }
+        ]
+    },
+    {
+        name: "Nolan Films",
+        description: "Directorial works by Christopher Nolan",
+        answers: [
+            { text: "Inception", points: 2 },
+            { text: "The Dark Knight", points: 1 },
+            { text: "Interstellar", points: 2 },
+            { text: "Tenet", points: 2 },
+            { text: "The Prestige", points: 2 },
+            { text: "Dunkirk", points: 2 },
+            { text: "Memento", points: 2 },
+            { text: "Oppenheimer", points: 1 },
+            { text: "Insomnia", points: 4 },
+            { text: "Following", points: 5 }
+        ]
+    },
+    {
+        name: "Lost TV Series Characters",
+        description: "Main characters from the show Lost",
+        answers: [
+            { text: "Jack Shepherd", points: 1 },
+            { text: "Sawyer", points: 1 },
+            { text: "Kate Austin", points: 1 },
+            { text: "Locke", points: 1 },
+            { text: "Hugo Reyes", points: 2 },
+            { text: "Sun-Hwa Kwon", points: 2 },
+            { text: "Charlie Pace", points: 2 },
+            { text: "Nonso", points: 4 },
+            { text: "Boone Carlyle", points: 3 },
+            { text: "Shannon Rutherford", points: 3 }
+        ]
+    },
+    {
+        name: "Witcher Books and Characters",
+        description: "Characters from The Witcher series",
+        answers: [
+            { text: "Geralt of Rivia", points: 1 },
+            { text: "Ciri", points: 2 },
+            { text: "Yennefer", points: 1 },
+            { text: "Triss Merigold", points: 2 },
+            { text: "The Wild Hunt", points: 2 },
+            { text: "Dandelion", points: 2 },
+            { text: "Vilgefortz", points: 3 },
+            { text: "Emhyr", points: 3 },
+            { text: "Avallac'h", points: 4 },
+            { text: "Calanthe", points: 3 }
+        ]
+    },
+    {
+        name: "Museums in Major Cities",
+        description: "Famous museums worldwide",
+        answers: [
+            { text: "Louvre (Paris)", points: 1 },
+            { text: "Metropolitan Museum (NYC)", points: 2 },
+            { text: "British Museum (London)", points: 2 },
+            { text: "Uffizi Gallery (Florence)", points: 3 },
+            { text: "Hermitage (St. Petersburg)", points: 2 },
+            { text: "Vatican Museum (Rome)", points: 2 },
+            { text: "Prado Museum (Madrid)", points: 2 },
+            { text: "Guggenheim (NYC)", points: 2 },
+            { text: "Acropolis Museum (Athens)", points: 3 },
+            { text: "Rijksmuseum (Amsterdam)", points: 3 }
+        ]
+    },
+    {
+        name: "Countries with Most UNESCO Sites",
+        description: "Nations rich in cultural heritage",
+        answers: [
+            { text: "Italy", points: 2 },
+            { text: "China", points: 2 },
+            { text: "Spain", points: 2 },
+            { text: "France", points: 1 },
+            { text: "Germany", points: 2 },
+            { text: "Mexico", points: 2 },
+            { text: "India", points: 2 },
+            { text: "Japan", points: 2 },
+            { text: "Greece", points: 2 },
+            { text: "Portugal", points: 3 }
+        ]
+    },
+    {
+        name: "Marvel Superheroes",
+        description: "Characters from Marvel Universe",
+        answers: [
+            { text: "Iron Man", points: 1 },
+            { text: "Captain America", points: 1 },
+            { text: "Thor", points: 1 },
+            { text: "Black Widow", points: 2 },
+            { text: "Hulk", points: 1 },
+            { text: "Doctor Strange", points: 2 },
+            { text: "Spider-Man", points: 1 },
+            { text: "Black Panther", points: 1 },
+            { text: "Ant-Man", points: 2 },
+            { text: "Scarlet Witch", points: 2 }
+        ]
+    },
+    {
+        name: "Ancient Wonders of the World",
+        description: "Wonders of the ancient world",
+        answers: [
+            { text: "Great Pyramid of Giza", points: 1 },
+            { text: "Hanging Gardens of Babylon", points: 2 },
+            { text: "Temple of Zeus", points: 2 },
+            { text: "Colossus of Rhodes", points: 2 },
+            { text: "Lighthouse of Alexandria", points: 2 },
+            { text: "Mausoleum at Halicarnassus", points: 3 },
+            { text: "Statue of Zeus", points: 2 },
+            { text: "Colosseum (Rome)", points: 1 },
+            { text: "Great Wall (China)", points: 1 },
+            { text: "Machu Picchu", points: 1 }
+        ]
+    },
+    {
+        name: "Billionaire Entrepreneurs",
+        description: "Self-made billionaires",
+        answers: [
+            { text: "Elon Musk", points: 1 },
+            { text: "Jeff Bezos", points: 1 },
+            { text: "Bill Gates", points: 1 },
+            { text: "Mark Zuckerberg", points: 1 },
+            { text: "Bernard Arnault", points: 2 },
+            { text: "Larry Ellison", points: 2 },
+            { text: "Steve Ballmer", points: 2 },
+            { text: "Mukesh Ambani", points: 2 },
+            { text: "Jack Ma", points: 2 },
+            { text: "Gautam Adani", points: 3 }
+        ]
+    },
+    {
+        name: "Greek Mythology Gods",
+        description: "Deities from ancient Greece",
+        answers: [
+            { text: "Zeus", points: 1 },
+            { text: "Poseidon", points: 1 },
+            { text: "Hades", points: 1 },
+            { text: "Athena", points: 1 },
+            { text: "Apollo", points: 1 },
+            { text: "Artemis", points: 2 },
+            { text: "Aphrodite", points: 1 },
+            { text: "Ares", points: 2 },
+            { text: "Hephaestus", points: 2 },
+            { text: "Hermes", points: 1 }
+        ]
+    },
+    {
+        name: "Emmy Award Winners (Drama Series)",
+        description: "Outstanding drama series Emmy winners",
+        answers: [
+            { text: "Game of Thrones", points: 2 },
+            { text: "Succession", points: 2 },
+            { text: "Breaking Bad", points: 2 },
+            { text: "The Crown", points: 2 },
+            { text: "Mad Men", points: 2 },
+            { text: "The Sopranos", points: 2 },
+            { text: "True Detective", points: 2 },
+            { text: "Westworld", points: 2 },
+            { text: "The Wire", points: 2 },
+            { text: "Dexter", points: 2 }
+        ]
+    }
 ];
 
 
@@ -57,6 +364,8 @@ let editingTeamIndex = null;
 // Initialize
 document.addEventListener('DOMContentLoaded', () => {
     setupEventListeners();
+    updatePageLanguage();
+    document.getElementById('languageSelect').value = currentLanguage;
     showScreen('mainScreen');
 });
 
@@ -210,7 +519,10 @@ function renderCategoriesList() {
         categoryEl.className = 'category-checkbox';
         categoryEl.innerHTML = `
             <input type="checkbox" ${isSelected ? 'checked' : ''} onchange="toggleCategory('${category.name}', this.checked)">
-            <span>${category.name}</span>
+            <div>
+                <span class="category-label">${category.name}</span>
+                ${category.description ? `<span class="category-desc">${category.description}</span>` : ''}
+            </div>
         `;
         categoriesList.appendChild(categoryEl);
     });
@@ -260,12 +572,12 @@ function showSetupScreen() {
 
 function startGame() {
     if (gameState.teams.length < 2) {
-        alert('Please add at least 2 teams to start the game');
+        alert(t('addAtLeastTwoTeams'));
         return;
     }
 
     if (gameState.selectedCategories.length === 0) {
-        alert('Please select at least one category');
+        alert(t('selectAtLeastOneCategory'));
         return;
     }
 
@@ -328,16 +640,16 @@ function renderGameScreen() {
     // Render answers grid
     const grid = document.getElementById('answersGrid');
     grid.innerHTML = '';
-    gameState.currentCategory.answers.forEach((answer) => {
+    gameState.currentCategory.answers.forEach((answer, idx) => {
         const btn = document.createElement('button');
         btn.className = 'answer-btn';
-        btn.textContent = answer;
+        btn.innerHTML = `<span class="answer-text">${answer.text}</span><span class="answer-points">${answer.points} ${t('points')}</span>`;
 
-        if (gameState.roundAnswers[answer]) {
+        if (gameState.roundAnswers[idx]) {
             btn.classList.add('found');
         }
 
-        btn.addEventListener('click', () => markAnswerFound(answer, btn));
+        btn.addEventListener('click', () => markAnswerFound(idx, btn));
         grid.appendChild(btn);
     });
 
@@ -345,31 +657,43 @@ function renderGameScreen() {
     updateScoreboard();
 }
 
-function markAnswerFound(answer, btn) {
-    if (gameState.roundAnswers[answer]) return;
-
-    gameState.roundAnswers[answer] = true;
-    btn.classList.add('found');
-    updateScoreDisplay();
-
-    // Check if all answers found
-    if (Object.keys(gameState.roundAnswers).length === 10) {
-        endTeamTurn();
+function markAnswerFound(answerIndex, btn) {
+    const answer = gameState.currentCategory.answers[answerIndex];
+    
+    if (gameState.roundAnswers[answerIndex]) {
+        // Deselect if already selected
+        delete gameState.roundAnswers[answerIndex];
+        btn.classList.remove('found');
+    } else {
+        // Select if not selected
+        gameState.roundAnswers[answerIndex] = true;
+        btn.classList.add('found');
     }
+    
+    updateScoreDisplay();
 }
 
 function undoAnswer() {
-    const foundAnswers = Object.keys(gameState.roundAnswers);
-    if (foundAnswers.length > 0) {
-        const lastAnswer = foundAnswers[foundAnswers.length - 1];
-        delete gameState.roundAnswers[lastAnswer];
+    const foundIndices = Object.keys(gameState.roundAnswers);
+    if (foundIndices.length > 0) {
+        const lastIndex = foundIndices[foundIndices.length - 1];
+        delete gameState.roundAnswers[lastIndex];
         renderGameScreen();
     }
 }
 
 function updateScoreDisplay() {
-    const found = Object.keys(gameState.roundAnswers).length;
-    document.getElementById('roundScore').textContent = `Round Score: ${found}/10`;
+    const foundAnswers = Object.keys(gameState.roundAnswers).length;
+    let roundPoints = 0;
+    
+    Object.keys(gameState.roundAnswers).forEach(answerIndex => {
+        const answer = gameState.currentCategory.answers[parseInt(answerIndex)];
+        if (answer) {
+            roundPoints += answer.points;
+        }
+    });
+    
+    document.getElementById('roundScore').textContent = `${t('roundScore')} ${roundPoints} ${t('points')}`;
 }
 
 function updateScoreboard() {
@@ -423,8 +747,15 @@ function nextTeam() {
 function endTeamTurn() {
     if (gameState.timerInterval) clearInterval(gameState.timerInterval);
 
-    // Add points to current team based on answers found
-    const pointsEarned = Object.keys(gameState.roundAnswers).length;
+    // Calculate points earned based on answer point values
+    let pointsEarned = 0;
+    Object.keys(gameState.roundAnswers).forEach(answerIndex => {
+        const answer = gameState.currentCategory.answers[parseInt(answerIndex)];
+        if (answer) {
+            pointsEarned += answer.points;
+        }
+    });
+    
     gameState.scores[gameState.currentTeamIndex] += pointsEarned;
 
     // Move to next team
@@ -475,12 +806,12 @@ function renderResults() {
 
     let html = `
         <div class="winner-box">
-            <h2>🏆 ${winner.name} Wins!</h2>
-            <p class="score">Total Score: ${gameState.scores[winnerIndex]} points</p>
+            <h2>🏆 ${winner.name} ${t('wins')}</h2>
+            <p class="score">${t('totalScore')} ${gameState.scores[winnerIndex]} ${t('points')}</p>
         </div>
 
         <div class="final-scores">
-            <h3>Final Scores</h3>
+            <h3>${t('finalScores')}</h3>
     `;
 
     // Sort teams by score
@@ -493,7 +824,7 @@ function renderResults() {
             <div class="final-score-item">
                 <span class="medal">${rank === 0 ? '🥇' : rank === 1 ? '🥈' : '🥉'}</span>
                 <span class="name">${team.name}</span>
-                <span class="points">${score} pts</span>
+                <span class="points">${score} ${t('points')}</span>
             </div>
         `;
     });
@@ -504,14 +835,15 @@ function renderResults() {
 }
 
 function shareVictory() {
-    const winner = gameState.teams[
-        Object.keys(gameState.scores).reduce((a, b) =>
-            gameState.scores[b] > gameState.scores[a] ? b : a
-        )
-    ];
-
-    const winnerScore = Math.max(...Object.values(gameState.scores));
-    const message = `🏆 I just won "Say Find"! ${winner.name} scored ${winnerScore} points! Can you beat that? 🎮`;
+    const winnerIndex = Object.keys(gameState.scores).reduce((a, b) =>
+        gameState.scores[b] > gameState.scores[a] ? b : a
+    );
+    const winner = gameState.teams[winnerIndex];
+    const winnerScore = gameState.scores[winnerIndex];
+    
+    const message = t('shareMessage')
+        .replace('{team}', winner.name)
+        .replace('{score}', winnerScore);
 
     // Facebook
     const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(window.location.href)}&quote=${encodeURIComponent(message)}`;
@@ -524,8 +856,8 @@ function shareVictory() {
         <div style="text-align: center; margin: 20px 0;">
             <p style="margin-bottom: 15px;">Share your victory!</p>
             <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap;">
-                <a href="${facebookUrl}" target="_blank" class="btn btn-primary" style="text-decoration: none; display: inline-block;">📘 Share on Facebook</a>
-                <a href="${twitterUrl}" target="_blank" class="btn btn-primary" style="text-decoration: none; display: inline-block;">𝕏 Share on Twitter</a>
+                <a href="${facebookUrl}" target="_blank" class="btn btn-primary" style="text-decoration: none; display: inline-block;">📘 Facebook</a>
+                <a href="${twitterUrl}" target="_blank" class="btn btn-primary" style="text-decoration: none; display: inline-block;">𝕏 Twitter</a>
                 <button onclick="copyLink()" class="btn btn-primary">📋 Copy Link</button>
             </div>
         </div>
@@ -533,13 +865,11 @@ function shareVictory() {
 
     const resultsContent = document.getElementById('resultsContent');
     resultsContent.innerHTML += shareHtml;
-
-    alert('Share options displayed! Click the buttons to share on your preferred platform.');
 }
 
 function copyLink() {
     navigator.clipboard.writeText(window.location.href);
-    alert('Game link copied to clipboard! 📋');
+    alert(t('linkCopied'));
 }
 
 // Utility Functions

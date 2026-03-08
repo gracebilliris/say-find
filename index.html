@@ -8,58 +8,75 @@
 </head>
 <body>
     <div class="container">
+        <!-- Language Selector -->
+        <div class="language-selector">
+            <label for="languageSelect">🌐 <span data-translate="language">Language</span>:</label>
+            <select id="languageSelect" onchange="setLanguage(this.value)">
+                <option value="en">English</option>
+                <option value="es">Español</option>
+                <option value="fr">Français</option>
+                <option value="de">Deutsch</option>
+                <option value="it">Italiano</option>
+                <option value="pt">Português</option>
+                <option value="el">Ελληνικά</option>
+                <option value="ru">Русский</option>
+                <option value="ja">日本語</option>
+                <option value="zh">中文</option>
+            </select>
+        </div>
+
         <!-- Header -->
         <header class="header">
-            <h1>🎮 Say Find</h1>
-            <p class="subtitle">The ultimate team quiz game combining knowledge, wit and competition!</p>
+            <h1 data-translate="appTitle">Say Find</h1>
+            <p class="subtitle" data-translate="subtitle">The ultimate team quiz game combining knowledge, wit and competition!</p>
         </header>
 
         <!-- Main Screen -->
         <div id="mainScreen" class="screen active">
             <div class="content-section">
-                <h2>Let's Play!</h2>
-                <button id="newGameBtn" class="btn btn-primary">Start New Game</button>
+                <h2 data-translate="letsPlay">Let's Play!</h2>
+                <button id="newGameBtn" class="btn btn-primary" data-translate="startNewGame">Start New Game</button>
             </div>
         </div>
 
         <!-- Setup Screen -->
         <div id="setupScreen" class="screen">
             <div class="content-section">
-                <h2>Game Setup</h2>
+                <h2 data-translate="gameSetup">Game Setup</h2>
                 
                 <!-- Teams Section -->
                 <div class="setup-panel">
-                    <h3>Teams</h3>
+                    <h3 data-translate="teams">Teams</h3>
                     <div id="teamsList" class="teams-list"></div>
-                    <button id="addTeamBtn" class="btn btn-secondary">+ Add Team</button>
+                    <button id="addTeamBtn" class="btn btn-secondary" data-translate="addTeam">+ Add Team</button>
                 </div>
 
                 <!-- Categories Section -->
                 <div class="setup-panel">
-                    <h3>Select Categories</h3>
-                    <p style="font-size: 0.9em; color: #666; margin-bottom: 15px;">Choose which categories to use in the game</p>
+                    <h3 data-translate="categories">Categories</h3>
+                    <p style="font-size: 0.9em; color: #666; margin-bottom: 15px;" data-translate="selectCategories">Choose which categories to use in the game</p>
                     <div id="categoriesList" class="categories-list"></div>
-                    <button id="selectAllCategoriesBtn" class="btn btn-secondary" style="margin-right: 5px; font-size: 0.85em; padding: 8px 15px;">Select All</button>
-                    <button id="deselectAllCategoriesBtn" class="btn btn-secondary" style="font-size: 0.85em; padding: 8px 15px;">Deselect All</button>
+                    <button id="selectAllCategoriesBtn" class="btn btn-secondary" style="margin-right: 5px; font-size: 0.85em; padding: 8px 15px;" data-translate="selectAll">Select All</button>
+                    <button id="deselectAllCategoriesBtn" class="btn btn-secondary" style="font-size: 0.85em; padding: 8px 15px;" data-translate="deselectAll">Deselect All</button>
                 </div>
 
                 <!-- Game Settings Section -->
                 <div class="setup-panel">
-                    <h3>Game Settings</h3>
+                    <h3 data-translate="gameSettings">Game Settings</h3>
                     <div class="settings-group">
-                        <label for="roundsInput">Number of Rounds:</label>
+                        <label for="roundsInput" data-translate="numberOfRounds">Number of Rounds:</label>
                         <input type="number" id="roundsInput" min="1" max="10" value="3">
                     </div>
                     <div class="settings-group">
-                        <label for="timeInput">Time per Round (seconds):</label>
+                        <label for="timeInput" data-translate="timePerRound">Time per Round (seconds):</label>
                         <input type="number" id="timeInput" min="10" max="300" value="60">
                     </div>
                 </div>
 
                 <!-- Action Buttons -->
                 <div class="button-group">
-                    <button id="startGameBtn" class="btn btn-primary">Start Game</button>
-                    <button id="backToMenuBtn" class="btn btn-secondary">Back to Menu</button>
+                    <button id="startGameBtn" class="btn btn-primary" data-translate="startGame">Start Game</button>
+                    <button id="backToMenuBtn" class="btn btn-secondary" data-translate="backToMenu">Back to Menu</button>
                 </div>
             </div>
         </div>
@@ -68,20 +85,20 @@
         <div id="gameScreen" class="screen">
             <div class="game-header">
                 <div class="game-info">
-                    <span class="round-info">Round <span id="currentRound">1</span>/<span id="totalRounds">3</span></span>
+                    <span class="round-info" data-translate="round">Round</span> <span id="currentRound">1</span>/<span id="totalRounds">3</span>
                     <span class="timer" id="timer">60</span>s
                 </div>
                 <div class="team-turn">
-                    <span id="currentTeamName" class="current-team">Team 1</span>'s Turn
+                    <span id="currentTeamName" class="current-team">Team 1</span><span data-translate="teamTurn">'s Turn</span>
                 </div>
             </div>
 
             <div class="content-section">
-                <h2>Find the 10 Answers</h2>
+                <h2 data-translate="findAnswers">Find the Answers</h2>
                 
                 <!-- Category Display -->
                 <div class="category-box">
-                    <p>Category:</p>
+                    <p data-translate="category">Category:</p>
                     <h3 id="categoryDisplay">Loading category...</h3>
                 </div>
 
@@ -90,19 +107,19 @@
 
                 <!-- Score Display -->
                 <div class="round-score">
-                    <p id="roundScore">Round Score: 0/10</p>
+                    <p id="roundScore">Round Score: 0 pts</p>
                 </div>
 
                 <!-- Action Buttons -->
                 <div class="button-group">
-                    <button id="nextTeamBtn" class="btn btn-primary">Next Team</button>
-                    <button id="undoBtn" class="btn btn-secondary">Undo</button>
+                    <button id="nextTeamBtn" class="btn btn-primary" data-translate="nextTeam">Next Team</button>
+                    <button id="undoBtn" class="btn btn-secondary" data-translate="undo">Undo</button>
                 </div>
             </div>
 
             <!-- Score Board -->
             <div class="scoreboard">
-                <h3>Scores</h3>
+                <h3 data-translate="scores">Scores</h3>
                 <div id="scoresDisplay" class="scores-display"></div>
             </div>
         </div>
@@ -110,14 +127,14 @@
         <!-- Results Screen -->
         <div id="resultsScreen" class="screen">
             <div class="content-section">
-                <h2>🏆 Game Over!</h2>
+                <h2>🏆 <span data-translate="gameOver">Game Over!</span></h2>
                 
                 <div id="resultsContent" class="results-content"></div>
 
                 <div class="button-group">
-                    <button id="shareBtn" class="btn btn-primary">Share Victory</button>
-                    <button id="playAgainBtn" class="btn btn-secondary">Play Again</button>
-                    <button id="mainMenuBtn" class="btn btn-secondary">Main Menu</button>
+                    <button id="shareBtn" class="btn btn-primary" data-translate="shareVictory">Share Victory</button>
+                    <button id="playAgainBtn" class="btn btn-secondary" data-translate="playAgain">Play Again</button>
+                    <button id="mainMenuBtn" class="btn btn-secondary" data-translate="mainMenu">Main Menu</button>
                 </div>
             </div>
         </div>
@@ -126,10 +143,10 @@
         <div id="teamModal" class="modal">
             <div class="modal-content">
                 <span class="close">&times;</span>
-                <h2>Add/Edit Team</h2>
+                <h2 data-translate="addEditTeam">Add/Edit Team</h2>
                 <input type="text" id="teamNameInput" placeholder="Team Name (optional)" maxlength="20">
                 <div class="color-picker">
-                    <label>Select Color:</label>
+                    <label data-translate="selectColor">Select Color:</label>
                     <div class="color-options">
                         <button class="color-btn" style="background-color: #FF6B6B;" data-color="#FF6B6B"></button>
                         <button class="color-btn" style="background-color: #4ECDC4;" data-color="#4ECDC4"></button>
@@ -140,13 +157,14 @@
                     </div>
                 </div>
                 <div class="modal-buttons">
-                    <button id="saveTeamBtn" class="btn btn-primary">Save Team</button>
-                    <button id="cancelTeamBtn" class="btn btn-secondary">Cancel</button>
+                    <button id="saveTeamBtn" class="btn btn-primary" data-translate="saveTeam">Save Team</button>
+                    <button id="cancelTeamBtn" class="btn btn-secondary" data-translate="cancel">Cancel</button>
                 </div>
             </div>
         </div>
     </div>
 
+    <script src="translations.js"></script>
     <script src="game.js"></script>
 </body>
 </html>

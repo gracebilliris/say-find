@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Say Find - Party Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>🎮 Say Find</h1>
+            <p class="subtitle">The ultimate team quiz game combining knowledge, wit and competition!</p>
+        </header>
+
+        <!-- Main Screen -->
+        <div id="mainScreen" class="screen active">
+            <div class="content-section">
+                <h2>Let's Play!</h2>
+                <button id="newGameBtn" class="btn btn-primary">Start New Game</button>
+            </div>
+        </div>
+
+        <!-- Setup Screen -->
+        <div id="setupScreen" class="screen">
+            <div class="content-section">
+                <h2>Game Setup</h2>
+                
+                <!-- Teams Section -->
+                <div class="setup-panel">
+                    <h3>Teams</h3>
+                    <div id="teamsList" class="teams-list"></div>
+                    <button id="addTeamBtn" class="btn btn-secondary">+ Add Team</button>
+                </div>
+
+                <!-- Game Settings Section -->
+                <div class="setup-panel">
+                    <h3>Game Settings</h3>
+                    <div class="settings-group">
+                        <label for="roundsInput">Number of Rounds:</label>
+                        <input type="number" id="roundsInput" min="1" max="10" value="3">
+                    </div>
+                    <div class="settings-group">
+                        <label for="timeInput">Time per Round (seconds):</label>
+                        <input type="number" id="timeInput" min="10" max="300" value="60">
+                    </div>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="button-group">
+                    <button id="startGameBtn" class="btn btn-primary">Start Game</button>
+                    <button id="backToMenuBtn" class="btn btn-secondary">Back to Menu</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Game Screen -->
+        <div id="gameScreen" class="screen">
+            <div class="game-header">
+                <div class="game-info">
+                    <span class="round-info">Round <span id="currentRound">1</span>/<span id="totalRounds">3</span></span>
+                    <span class="timer" id="timer">60</span>s
+                </div>
+                <div class="team-turn">
+                    <span id="currentTeamName" class="current-team">Team 1</span>'s Turn
+                </div>
+            </div>
+
+            <div class="content-section">
+                <h2>Find the 10 Answers</h2>
+                
+                <!-- Category Display -->
+                <div class="category-box">
+                    <p>Category:</p>
+                    <h3 id="categoryDisplay">Loading category...</h3>
+                </div>
+
+                <!-- Answers Grid -->
+                <div id="answersGrid" class="answers-grid"></div>
+
+                <!-- Score Display -->
+                <div class="round-score">
+                    <p id="roundScore">Round Score: 0/10</p>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="button-group">
+                    <button id="nextTeamBtn" class="btn btn-primary">Next Team</button>
+                    <button id="undoBtn" class="btn btn-secondary">Undo</button>
+                </div>
+            </div>
+
+            <!-- Score Board -->
+            <div class="scoreboard">
+                <h3>Scores</h3>
+                <div id="scoresDisplay" class="scores-display"></div>
+            </div>
+        </div>
+
+        <!-- Results Screen -->
+        <div id="resultsScreen" class="screen">
+            <div class="content-section">
+                <h2>🏆 Game Over!</h2>
+                
+                <div id="resultsContent" class="results-content"></div>
+
+                <div class="button-group">
+                    <button id="shareBtn" class="btn btn-primary">Share Victory</button>
+                    <button id="playAgainBtn" class="btn btn-secondary">Play Again</button>
+                    <button id="mainMenuBtn" class="btn btn-secondary">Main Menu</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Team Modal -->
+        <div id="teamModal" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <h2>Add/Edit Team</h2>
+                <input type="text" id="teamNameInput" placeholder="Team Name" maxlength="20">
+                <div class="color-picker">
+                    <label>Select Color:</label>
+                    <div class="color-options">
+                        <button class="color-btn" style="background-color: #FF6B6B;" data-color="#FF6B6B"></button>
+                        <button class="color-btn" style="background-color: #4ECDC4;" data-color="#4ECDC4"></button>
+                        <button class="color-btn" style="background-color: #FFE66D;" data-color="#FFE66D"></button>
+                        <button class="color-btn" style="background-color: #95E1D3;" data-color="#95E1D3"></button>
+                        <button class="color-btn" style="background-color: #C7CEEA;" data-color="#C7CEEA"></button>
+                        <button class="color-btn" style="background-color: #FF8B94;" data-color="#FF8B94"></button>
+                    </div>
+                </div>
+                <div class="modal-buttons">
+                    <button id="saveTeamBtn" class="btn btn-primary">Save Team</button>
+                    <button id="cancelTeamBtn" class="btn btn-secondary">Cancel</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>

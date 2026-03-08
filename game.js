@@ -179,14 +179,16 @@ function renderCategoriesList() {
     categoriesList.innerHTML = '';
 
     CATEGORIES.forEach((category) => {
-        const isSelected = gameState.selectedCategories.includes(category.name);
+        const isSelected = gameState.selectedCategories.includes(category.id);
+        const translatedName = t(category.nameKey);
+        const translatedDesc = t(category.descriptionKey);
         const categoryEl = document.createElement('label');
         categoryEl.className = 'category-checkbox';
         categoryEl.innerHTML = `
-            <input type="checkbox" ${isSelected ? 'checked' : ''} onchange="toggleCategory('${category.name}', this.checked)">
+            <input type="checkbox" ${isSelected ? 'checked' : ''} onchange="toggleCategory('${category.id}', this.checked)">
             <div>
-                <span class="category-label">${category.name}</span>
-                ${category.description ? `<span class="category-desc">${category.description}</span>` : ''}
+                <span class="category-label">${translatedName}</span>
+                ${translatedDesc ? `<span class="category-desc">${translatedDesc}</span>` : ''}
             </div>
         `;
         categoriesList.appendChild(categoryEl);
@@ -204,7 +206,7 @@ function toggleCategory(categoryName, isChecked) {
 }
 
 function selectAllCategories() {
-    gameState.selectedCategories = CATEGORIES.map(c => c.name);
+    gameState.selectedCategories = CATEGORIES.map(c => c.id);
     renderCategoriesList();
 }
 
@@ -227,7 +229,7 @@ function showSetupScreen() {
             return acc;
         }, {}),
         roundAnswers: {},
-        selectedCategories: gameState.selectedCategories.length > 0 ? gameState.selectedCategories : CATEGORIES.map(c => c.name)
+        selectedCategories: gameState.selectedCategories.length > 0 ? gameState.selectedCategories : CATEGORIES.map(c => c.id)
     };
 
     renderTeamsList();
@@ -272,7 +274,7 @@ function startRound() {
 }
 
 function selectNewCategoryForTeam() {
-    const availableCategories = CATEGORIES.filter(c => gameState.selectedCategories.includes(c.name));
+    const availableCategories = CATEGORIES.filter(c => gameState.selectedCategories.includes(c.id));
     
     if (availableCategories.length === 0) {
         alert('No categories available');
@@ -285,9 +287,9 @@ function selectNewCategoryForTeam() {
     do {
         category = availableCategories[Math.floor(Math.random() * availableCategories.length)];
         attempts++;
-    } while (gameState.roundUsedCategories.has(category.name) && attempts < 50);
+    } while (gameState.roundUsedCategories.has(category.id) && attempts < 50);
     
-    gameState.roundUsedCategories.add(category.name);
+    gameState.roundUsedCategories.add(category.id);
     gameState.currentCategory = category;
 }
 
@@ -300,7 +302,7 @@ function renderGameScreen() {
     document.getElementById('currentTeamName').textContent = currentTeam.name;
 
     // Update category
-    document.getElementById('categoryDisplay').textContent = gameState.currentCategory.name;
+    document.getElementById('categoryDisplay').textContent = t(gameState.currentCategory.nameKey);
 
     // Render answers grid
     const grid = document.getElementById('answersGrid');

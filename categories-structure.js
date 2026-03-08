@@ -246,8 +246,8 @@ function getCategoriesList() {
                 nameKey: question.nameKey,
                 descriptionKey: question.descriptionKey,
                 answers: question.answers,
-                name: t(question.nameKey),
-                description: t(question.descriptionKey)
+                name: question.nameKey,
+                description: question.descriptionKey
             });
         });
     });
@@ -260,7 +260,7 @@ function getMainCategories() {
         key: key,
         nameKey: CATEGORY_STRUCTURE[key].nameKey,
         descriptionKey: CATEGORY_STRUCTURE[key].descriptionKey,
-        name: t(CATEGORY_STRUCTURE[key].nameKey),
-        description: t(CATEGORY_STRUCTURE[key].descriptionKey)
+        name: CATEGORY_STRUCTURE[key].nameKey,
+        description: CATEGORY_STRUCTURE[key].descriptionKey
     }));
 }

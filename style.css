@@ -658,6 +658,54 @@ body {
     flex: 1;
 }
 
+/* About Modal Styles */
+.about-modal {
+    max-width: 600px !important;
+    max-height: 90vh !important;
+    overflow-y: auto !important;
+}
+
+.about-content {
+    padding: 20px 0;
+}
+
+.about-content h3 {
+    color: var(--primary);
+    margin-top: 20px;
+    margin-bottom: 12px;
+    font-size: 1.2em;
+}
+
+.about-content h3:first-child {
+    margin-top: 0;
+}
+
+.about-content p {
+    line-height: 1.6;
+    margin-bottom: 15px;
+    color: var(--text);
+}
+
+.about-content ul {
+    margin-left: 20px;
+    margin-bottom: 15px;
+}
+
+.about-content ul li {
+    line-height: 1.6;
+    margin-bottom: 8px;
+}
+
+.about-content a {
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.about-content a:hover {
+    text-decoration: underline;
+}
+
 /* Responsive */
 @media (max-width: 600px) {
     .language-selector {

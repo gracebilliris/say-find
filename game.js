@@ -373,6 +373,7 @@ document.addEventListener('DOMContentLoaded', () => {
 function setupEventListeners() {
     // Main Menu
     document.getElementById('newGameBtn').addEventListener('click', showSetupScreen);
+    document.getElementById('aboutBtn').addEventListener('click', openAboutModal);
     document.getElementById('backToMenuBtn').addEventListener('click', () => showScreen('mainScreen'));
 
     // Setup Screen
@@ -872,6 +873,15 @@ function copyLink() {
     alert(t('linkCopied'));
 }
 
+// About Modal Functions
+function openAboutModal() {
+    document.getElementById('aboutModal').style.display = 'block';
+}
+
+function closeAboutModal() {
+    document.getElementById('aboutModal').style.display = 'none';
+}
+
 // Utility Functions
 window.editTeam = editTeam;
 window.deleteTeam = deleteTeam;
@@ -879,3 +889,5 @@ window.copyLink = copyLink;
 window.toggleCategory = toggleCategory;
 window.selectAllCategories = selectAllCategories;
 window.deselectAllCategories = deselectAllCategories;
+window.openAboutModal = openAboutModal;
+window.closeAboutModal = closeAboutModal;

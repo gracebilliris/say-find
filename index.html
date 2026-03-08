@@ -36,6 +36,7 @@
             <div class="content-section">
                 <h2 data-translate="letsPlay">Let's Play!</h2>
                 <button id="newGameBtn" class="btn btn-primary" data-translate="startNewGame">Start New Game</button>
+                <button id="aboutBtn" class="btn btn-secondary" data-translate="about">About & Credits</button>
             </div>
         </div>
 
@@ -136,6 +137,35 @@
                     <button id="playAgainBtn" class="btn btn-secondary" data-translate="playAgain">Play Again</button>
                     <button id="mainMenuBtn" class="btn btn-secondary" data-translate="mainMenu">Main Menu</button>
                 </div>
+            </div>
+        </div>
+
+        <!-- About Modal -->
+        <div id="aboutModal" class="modal">
+            <div class="modal-content about-modal">
+                <span class="close" onclick="closeAboutModal()">&times;</span>
+                <h2 data-translate="about">About Say Find</h2>
+                <div id="aboutContent" class="about-content">
+                    <h3 data-translate="gameDescription">About the Game</h3>
+                    <p data-translate="aboutGameText">Say Find is a fun party game combining knowledge, observation, and competition. Teams race to find all the answers on a themed list. Harder answers are worth more points—the team with the most points wins!</p>
+                    
+                    <h3 data-translate="howToPlay">How to Play</h3>
+                    <ul>
+                        <li data-translate="step1">Divide into teams and choose a team name and color</li>
+                        <li data-translate="step2">Select categories for the game</li>
+                        <li data-translate="step3">Each team takes turns finding answers from the list</li>
+                        <li data-translate="step4">More difficult answers are worth more points</li>
+                        <li data-translate="step5">Most points after all rounds wins!</li>
+                    </ul>
+                    
+                    <h3 data-translate="credits">Credits & Attribution</h3>
+                    <p data-translate="originalGame">This game is an English adaptation of the original Greek party game <strong>"Πες Βρες"</strong> (Say Find).</p>
+                    <p data-translate="originalCreators"><strong>Original Game Created by:</strong> Petros Chatzipapas, Harris Kokkinos, Alexios Argiriou</p>
+                    <p data-translate="originalWebsite"><strong>Original Game:</strong> <a href="https://www.pesvres.com" target="_blank" rel="noopener noreferrer">www.pesvres.com</a></p>
+                    <p data-translate="copyrightNotice">© 2011-2026 Πες Βρες - All Rights Reserved</p>
+                    <p data-translate="inspiration"><strong>Inspired by:</strong> Wavelength (Mike Eckel) and other party games</p>
+                </div>
+                <button onclick="closeAboutModal()" class="btn btn-primary" style="margin-top: 20px; width: 100%;" data-translate="close">Close</button>
             </div>
         </div>
 
